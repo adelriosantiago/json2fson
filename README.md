@@ -18,7 +18,7 @@ var data = {
 	'colors': ['red', 'green', 'blue']
 }
 
-json2Fson.convert({ 'data': data });
+json2fson.convert({ 'data': data });
 ```
 
 Creates the following folder/file structure:
