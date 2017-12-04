@@ -1,4 +1,4 @@
-//Convert from JSON to FSON
+//json2fson (JavaScript Object Notation to FileSystem Object Notation)
 
 'use strict';
 
@@ -8,7 +8,7 @@ var path = require('path'),
 	mkdirp = require('mkdirp');
 
 //Default options
-var defaultOptions = { dbPath: "./root-db/" };
+var defaultOptions = { dbPath: "./fson/" };
 
 function convert(json, subPath) {
 	if (_.isUndefined(subPath)) subPath = "";
