@@ -17,6 +17,10 @@
     "json2fson",
     "jsontofson"
   ],
+  "dependencies": {
+    "lodash": "^4.17.4",
+    "mkdirp": "^0.5.1"
+  },
   "author": "@adelriosantiago",
   "license": "MIT",
   "bugs": {
