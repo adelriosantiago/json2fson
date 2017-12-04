@@ -1,2 +1,2 @@
-# json2Fson
+# json-to-fson
 JavaScript Object Notation to FileSystem Object Notation
