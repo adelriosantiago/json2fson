@@ -3,7 +3,7 @@ JavaScript Object Notation to FileSystem Object Notation
 
 Converts a JSON to a [FSON](https://github.com/fson-standard/rfc/blob/master/FSON.md) structure:
 
-## Current status: Early alpha!
+**Current status: Early alpha!**
 
 ## Installation
 
