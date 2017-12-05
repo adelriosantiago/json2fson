@@ -1,7 +1,9 @@
 # json2fson
 JavaScript Object Notation to FileSystem Object Notation
 
-Converts a JSON to a folder structure
+Converts a JSON to a [FSON](https://github.com/fson-standard/rfc/blob/master/FSON.md) structure:
+
+## Current status: Early alpha!
 
 ## Installation
 
