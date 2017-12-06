@@ -36,6 +36,11 @@ Creates the following folder/file structure:
 	      * 2 _(file contents: "blue")_
 	
 	
+
+## Running tests
+	
+Do `npm install` and `npm test` to create the FSON above.
+
 ## License
 
 [MIT](https://github.com/adelriosantiago/json2fson/blob/master/LICENSE)
