@@ -23,7 +23,7 @@ var data = {
 json2fson.convert({ 'data': data });
 ```
 
-Creates the following folder/file structure:
+Will create:
 
 * ./
 	* fson/
