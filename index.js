@@ -7,6 +7,8 @@ var path = require('path'),
 	_ = require('lodash'),
 	mkdirp = require('mkdirp');
 
+var regex = /[A-Z]/g;
+
 //Default options
 var defaultOptions = { dbPath: "./fson/" };
 
@@ -14,7 +16,11 @@ function convert(json, subPath) {
 	if (_.isUndefined(subPath)) subPath = "";
 	
 	_.forOwn(json, function(v, k) {
-		var keyPath = path.join(defaultOptions.dbPath, subPath, k);
+		var slugK = k.replace(regex, function(match) {
+			return "-" + match.toLowerCase();
+		});
+		
+		var keyPath = path.join(defaultOptions.dbPath, subPath, slugK);
 		
 		if (_.isObject(v)) {
 			//Create dir, will do nothing if the dir already exists
