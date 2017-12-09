@@ -16,14 +16,14 @@ var data = {
 				'NAME': 'Bar',
 				'AGE': 30
 			}
-		]
+		],
 		'others': [
 			{
 				'NAME': 'FooBar',
 				'AGE': 25
 			}
 		]
-	}
+	},
 	'homeAddress': "Main St. #180"
 }
 

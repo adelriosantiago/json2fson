@@ -16,11 +16,14 @@ function convert(json, subPath) {
 	if (_.isUndefined(subPath)) subPath = "";
 	
 	_.forOwn(json, function(v, k) {
-		var slugK = k.replace(regex, function(match) {
+		var slugPath;
+		
+		slugPath = path.join(subPath, k).replace(regex, function(match) {
+			
 			return "-" + match.toLowerCase();
 		});
 		
-		var keyPath = path.join(defaultOptions.dbPath, subPath, slugK);
+		var keyPath = path.join(defaultOptions.dbPath, slugPath);
 		
 		if (_.isObject(v)) {
 			//Create dir, will do nothing if the dir already exists
