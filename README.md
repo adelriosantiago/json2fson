@@ -55,12 +55,12 @@ Will create:
 				* 2 _("blue")_
 			* friends/
 				* good-ones/
-						* 0/
-							* -n-a-m-e _("Foo")_
-							* -a-g-e _(20)_
-						* 1/
-							* -n-a-m-e _("Bar")_
-							* -a-g-e _(30)_
+					* 0/
+						* -n-a-m-e _("Foo")_
+						* -a-g-e _(20)_
+					* 1/
+						* -n-a-m-e _("Bar")_
+						* -a-g-e _(30)_
 				* -o-t-h-e-r-s/
 					* 0/
 						* -n-a-m-e _("FooBar")_
