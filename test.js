@@ -17,10 +17,10 @@ var data = {
 				'AGE': 30
 			}
 		],
-		'others': [
+		'OTHERS': [
 			{
 				'NAME': 'FooBar',
-				'AGE': 25
+				'AGE': 25.5
 			}
 		]
 	},
