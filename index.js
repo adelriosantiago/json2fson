@@ -12,6 +12,10 @@ var regex = /[A-Z]/g;
 //Default options
 var defaultOptions = { dbPath: "./fson/" };
 
+function options(opts) {
+  defaultOptions = _.merge(defaultOptions, opts);
+}
+
 function convert(json, subPath) {
   if (_.isUndefined(subPath)) subPath = "";
   
@@ -39,10 +43,6 @@ function convert(json, subPath) {
       });
     }
   })
-}
-
-function options(opts) {
-  defaultOptions = _.merge(defaultOptions, opts);
 }
 
 module.exports = {
