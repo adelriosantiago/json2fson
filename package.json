@@ -4,7 +4,8 @@
   "description": "JavaScript Object Notation to FileSystem Object Notation",
   "main": "index.js",
   "scripts": {
-    "test": "node test.js"
+    "test": "mocha --timeout 60000",
+    "test:forever": "mocha --watch ./test"
   },
   "repository": {
     "type": "git",
@@ -18,7 +19,7 @@
     "jsontofson"
   ],
   "dependencies": {
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.11",
     "mkdirp": "^0.5.1"
   },
   "author": "@adelriosantiago",
@@ -26,5 +27,9 @@
   "bugs": {
     "url": "https://github.com/adelriosantiago/json2fson/issues"
   },
-  "homepage": "https://github.com/adelriosantiago/json2fson#readme"
+  "homepage": "https://github.com/adelriosantiago/json2fson#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.1.4"
+  }
 }

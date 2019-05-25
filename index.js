@@ -30,7 +30,7 @@ function convert(json, subPath) {
     var keyPath = path.join(defaultOptions.dbPath, slugPath);
     
     if (_.isObject(v)) {
-      //Create dir, will do nothing if the dir already exists
+      //Create folder (will do nothing if the folder already exists)
       mkdirp(keyPath, function(err) {
         if (err) console.error(err);
         
