@@ -17,7 +17,10 @@ const convert = (json, options) => {
   assert.isDefined(json);
   
   defaultOptions = _.assign(
-    { dbPath: "./fson/" },
+    {
+      dbPath: "./fson/", //The path where the json will be stored as a file
+      persistent: true, //If not persistent, the dbPath will be deleted and recreated each time removing values that are no longer in the json
+    },
     options
   );
   

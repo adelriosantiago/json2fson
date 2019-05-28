@@ -1,5 +1,7 @@
 'use strict';
 
+const path = require('path');
+const fs = require('fs');
 const json2fson = require('../index.js');
 const assert = require("chai").assert;
 
@@ -49,8 +51,17 @@ describe("USER TESTS", function() {
         '$money$': 2000.02
       }
 
-      const c = json2fson.convert({ data });
-      assert.isTrue(c);
+      const res = json2fson.convert({ data });
+      assert.isTrue(res);
+      
+      let value = fs.readFileSync(path.join(__dirname, "..", "fson", "data", "name"), 'utf8');
+      assert.equal(value, "John Doe");
+      
+      value = fs.readFileSync(path.join(__dirname, "..", "fson", "data", "age"), 'utf8');
+      assert.equal(value, "20");
+      
+      value = fs.readFileSync(path.join(__dirname, "..", "fson", "data", "friends", "_o_t_h_e_r_s", "0", "_a_g_e"), 'utf8');
+      assert.equal(value, "25.5");
     });
   });
 });
