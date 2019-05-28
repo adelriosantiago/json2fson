@@ -2,50 +2,61 @@
 
 'use strict';
 
-var path = require('path'),
-  fs = require('fs'),
-  _ = require('lodash'),
-  mkdirp = require('mkdirp');
+const path = require('path');
+const fs = require('fs');
+const _ = require('lodash');
+const mkdirp = require('mkdirp');
+const assert = require("chai").assert;
 
-var regex = /[A-Z]/g;
+const regex = /[A-Z]/g;
 
 //Default options
-var defaultOptions = { dbPath: "./fson/" };
+let defaultOptions;
 
-function options(opts) {
-  defaultOptions = _.merge(defaultOptions, opts);
+const convert = (json, options) => {
+  assert.isDefined(json);
+  
+  defaultOptions = _.assign(
+    { dbPath: "./fson/" },
+    options
+  );
+  
+  return _convert(json, undefined);
 }
 
-function convert(json, subPath) {
+const _convert = (json, subPath) => {
+  assert.isDefined(json);
+  
   if (_.isUndefined(subPath)) subPath = "";
   
   _.forOwn(json, function(v, k) {
-    var slugPath;
+    let slugPath;
     
     slugPath = path.join(subPath, k).replace(regex, function(match) {
       
       return "_" + match.toLowerCase();
     });
     
-    var keyPath = path.join(defaultOptions.dbPath, slugPath);
+    let keyPath = path.join(defaultOptions.dbPath, slugPath);
     
     if (_.isObject(v)) {
       //Create folder (will do nothing if the folder already exists)
       mkdirp(keyPath, function(err) {
-        if (err) console.error(err);
+        assert.notExists(err);
         
-        convert(v, path.join(subPath, k));
+        _convert(v, path.join(subPath, k));
       });
     } else {
-      //Create file
+      //Create file (will overwrite contents)
       fs.writeFile(keyPath, v, function(err) {
-        if (err) return console.log(err);
+        assert.notExists(err);
       });
     }
-  })
+  });
+  
+  return true;
 }
 
 module.exports = {
-  convert: convert,
-  options: options
+  convert
 };
