@@ -4,7 +4,7 @@
   "description": "JavaScript Object Notation to FileSystem Object Notation",
   "main": "index.js",
   "scripts": {
-    "test": "mocha --timeout 60000",
+    "test": "mocha --timeout 10000",
     "test:forever": "mocha --watch ./test"
   },
   "repository": {
@@ -19,6 +19,7 @@
     "jsontofson"
   ],
   "dependencies": {
+    "fs-extra": "^8.0.1",
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1"
   },
