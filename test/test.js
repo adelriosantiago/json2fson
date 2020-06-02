@@ -44,7 +44,7 @@ describe("USER TESTS", function () {
         path.join(__dirname, "..", "fson", "data", "name"),
         "utf8"
       )
-      assert.equal(value, "John Doe")
+      assert.equal(value, '"John Doe"')
 
       value = fs.readFileSync(
         path.join(__dirname, "..", "fson", "data", "age"),

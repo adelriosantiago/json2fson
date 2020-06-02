@@ -1,4 +1,4 @@
-//json2fson (JavaScript Object Notation to FileSystem Object Notation and back)
+// json2fson (JavaScript Object Notation to FileSystem Object Notation and back)
 
 "use strict"
 
@@ -10,8 +10,8 @@ const assert = require("chai").assert
 
 const regex = /[A-Z]/g
 
-//Default options
-var dbPath = "./fson/" //The path where the json will be stored as a file
+// Default options
+var dbPath = "./fson/" // The path where the json will be stored as a file
 let defaultOptions
 
 let stack = []
@@ -21,8 +21,8 @@ const convert = async (json, options) => {
 
   defaultOptions = _.assign(
     {
-      persistent: true, //If not persistent, the dbPath will be deleted and recreated each time removing values that are no longer in the json
-      verbose: false, //If true will explain what is doing
+      persistent: true, // If not persistent, the dbPath will be deleted and recreated each time removing values that are no longer in the json
+      verbose: false, // If true will explain what is doing
     },
     options
   )
@@ -46,15 +46,15 @@ const _convert = (json, subPath) => {
   let tasks = []
 
   tasks = _.map(json, (v, k) => {
-    let slugPath = path
+    const slugPath = path
       .join(subPath, k.toString())
       .replace(regex, function (match) {
-        return "_" + match.toLowerCase()
+        return "_" + match.toLowerCase() // Because files are case-insensitive "A" becomes "_a"
       })
-    let keyPath = path.join(dbPath, slugPath)
+    const keyPath = path.join(dbPath, slugPath)
 
     if (_.isPlainObject(v) || _.isArray(v)) {
-      return new Promise((res, rej) => {
+      return new Promise((res) => {
         fs.ensureDir(keyPath, async (err) => {
           assert.notExists(err)
 
@@ -65,8 +65,8 @@ const _convert = (json, subPath) => {
         })
       })
     } else {
-      return new Promise((res, rej) => {
-        fs.writeFile(keyPath, v, function (err) {
+      return new Promise((res) => {
+        fs.writeFile(keyPath, JSON.stringify(v), function (err) {
           assert.notExists(err)
 
           if (defaultOptions.verbose) console.log("File created:", keyPath)
