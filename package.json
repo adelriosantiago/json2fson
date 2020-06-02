@@ -1,6 +1,6 @@
 {
   "name": "json2fson",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "JavaScript Object Notation to FileSystem Object Notation",
   "main": "index.js",
   "scripts": {
