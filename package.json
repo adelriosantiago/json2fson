@@ -16,7 +16,9 @@
     "fson",
     "filesystem",
     "json2fson",
-    "jsontofson"
+    "fson2json",
+    "jsontofson",
+    "fsontojson"
   ],
   "dependencies": {
     "fs-extra": "^8.0.1",
