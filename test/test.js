@@ -31,16 +31,14 @@ const data = {
   $money$: 2000.02,
 }
 
-describe("USER TESTS", function () {
-  describe("given a random JSON structure", function () {
-    it("should convert it to FSON", async function () {
-      const res = await json2fson.convert(
-        { data },
-        { persistent: false, verbose: true }
-      )
-      assert.isTrue(res)
+describe("UNIT TESTS", function () {
+  describe("given the standard JSON structure", function () {
+    it("should convert JSON to FSON", async function () {
+      let res, value
 
-      let value = fs.readFileSync(
+      res = await json2fson.convert({ data }, { persistent: false })
+
+      value = fs.readFileSync(
         path.join(__dirname, "..", "fson", "data", "name"),
         "utf8"
       )
@@ -68,20 +66,19 @@ describe("USER TESTS", function () {
       assert.equal(value, "25.5")
     })
 
-    xit("should probe that database is `persistent` by default, keeping old values even when deleted", function () {
-      let res = json2fson.convert({ data })
-      assert.isTrue(res)
+    it("should old values when persistent is `true`", async function () {
+      let res, value
 
-      const newJSON = { name: "Jhon Doe" }
+      res = await json2fson.convert({ data })
 
-      res = json2fson.convert({ data: newJSON })
-      assert.isTrue(res)
+      const newDb = { name: "A different guy" }
+      res = await json2fson.convert({ data: newDb })
 
-      let value = fs.readFileSync(
+      value = fs.readFileSync(
         path.join(__dirname, "..", "fson", "data", "name"),
         "utf8"
       )
-      assert.equal(value, "John Doe")
+      assert.equal(value, '"A different guy"')
 
       value = fs.readFileSync(
         path.join(__dirname, "..", "fson", "data", "age"),
