@@ -27,14 +27,9 @@ const convert = async (json, options) => {
     options
   )
 
-  if (defaultOptions.persistent === false) {
-    fs.emptyDirSync(dbPath)
-  }
-
+  if (defaultOptions.persistent === false) fs.emptyDirSync(dbPath)
   await Promise.all(_convert(json, undefined))
-
   if (defaultOptions.verbose) console.log("FSON created")
-
   return Promise.resolve(true)
 }
 
@@ -44,8 +39,7 @@ const _convert = (json, subPath) => {
   if (_.isUndefined(subPath)) subPath = ""
 
   let tasks = []
-
-  tasks = _.map(json, (v, k) => {
+  tasks = _.map(json, async (v, k) => {
     const slugPath = path
       .join(subPath, k.toString())
       .replace(regex, function (match) {
@@ -54,33 +48,29 @@ const _convert = (json, subPath) => {
     const keyPath = path.join(dbPath, slugPath)
 
     if (_.isPlainObject(v) || _.isArray(v)) {
-      return new Promise((res) => {
-        fs.ensureDir(keyPath, async (err) => {
-          assert.notExists(err)
-
-          if (defaultOptions.verbose) console.log("Folder created:", keyPath)
-          await Promise.all(_convert(v, path.join(subPath, k.toString())))
-
-          return res()
-        })
-      })
+      try {
+        await fs.ensureDir(keyPath)
+      } catch (err) {
+        throw err
+      }
+      if (defaultOptions.verbose) console.log("Folder created:", keyPath)
+      await Promise.all(_convert(v, path.join(subPath, k.toString())))
+      return Promise.resolve(true)
     } else {
-      return new Promise((res) => {
-        fs.writeFile(keyPath, JSON.stringify(v), function (err) {
-          assert.notExists(err)
-
-          if (defaultOptions.verbose) console.log("File created:", keyPath)
-
-          return res()
-        })
-      })
+      try {
+        await fs.writeFile(keyPath, JSON.stringify(v))
+      } catch (err) {
+        throw err
+      }
+      if (defaultOptions.verbose) console.log("File created:", keyPath)
+      return Promise.resolve(true)
     }
   })
 
   return tasks
 }
 
-const changeDbPath = (newPath) => {
+const setDbPath = (newPath) => {
   if (_.isString(newPath)) {
     try {
       fs.ensureDirSync(newPath)
@@ -93,4 +83,4 @@ const changeDbPath = (newPath) => {
   }
 }
 
-module.exports = { convert, changeDbPath }
+module.exports = { convert, setDbPath }
