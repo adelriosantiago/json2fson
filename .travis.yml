@@ -1,0 +1,11 @@
+dist: trusty
+language: node_js
+node_js:
+  - "10"
+before_script:
+  - npm install
+  - npm list --depth=0
+script:
+  - npm start &
+  - sleep 3
+  - npm test
