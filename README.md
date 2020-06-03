@@ -1,5 +1,8 @@
 # json2fson
 
+[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/adelriosantiago/json2fson)
+[![Build Status](https://travis-ci.com/adelriosantiago/json2fson.svg?branch=master)](https://travis-ci.com/adelriosantiago/json2fson)
+
 JavaScript Object Notation to FileSystem Object Notation (json to fson) and back
 
 Converts a JSON to a [FSON](https://github.com/fson-standard/rfc/blob/master/README.md) and back:
