@@ -21,7 +21,7 @@
     "fsontojson"
   ],
   "dependencies": {
-    "fs-extra": "^8.0.1",
+    "fs-extra": "^9.0.0",
     "lodash": "^4.17.11",
     "mkdirp": "^0.5.1"
   },

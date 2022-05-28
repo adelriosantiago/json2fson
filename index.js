@@ -49,7 +49,10 @@ const _convert = (json, subPath) => {
 
     if (_.isPlainObject(v) || _.isArray(v)) {
       try {
-        await fs.ensureDir(keyPath)
+        await /* TODO: JSFIX could not patch the breaking change:
+        Creating a directory with fs-extra no longer returns the path 
+        Suggested fix: The returned promise no longer includes the path of the new directory */
+        fs.ensureDir(keyPath)
       } catch (err) {
         throw err
       }
